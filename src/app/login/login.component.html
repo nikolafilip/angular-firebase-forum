@@ -1,0 +1,16 @@
+<div class="container-fluid">
+    <div *ngIf='!isLoggedIn'>
+        <h2>Login</h2><br>
+        <div style="width:25%">
+            <label for="username">Username</label>
+            <input class="form-control" id="username" type="text" [(ngModel)]="loginFormData.username"><br>
+            <label for="password">Password:</label>
+            <input class="form-control" id="password" type="password" [(ngModel)]="loginFormData.password"><br>{{loginService.message}}<br><br>
+            <button class='btn btn-success' (click)='attemptLogon()'>Login!</button>&nbsp;<button class='btn btn-warning' [routerLink]="['/register']">Register!</button>
+        </div>
+    </div>
+    <div *ngIf='isLoggedIn'>
+        <h3>User is already logged in!</h3><br><br>
+        <button (click)='logout()' class='btn btn-danger'>Log out</button><br><br>
+    </div>
+</div>

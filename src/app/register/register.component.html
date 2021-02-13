@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <h2>Register form:</h2><br>
+
+    <div style="width:25%">
+        <label for="username">Username:</label>
+        <input class="form-control" id="username" type="text" [(ngModel)]="registerForm.username"><br>
+
+        <label for="password">Password:</label>
+        <input class="form-control" id="password" type="password" [(ngModel)]="registerForm.password"><br>
+
+        <label for="rptpassword">Repeat password:</label>
+        <input class="form-control" id="rptpassword" type="password" [(ngModel)]="registerForm.repeatpassword"><br>
+
+        <label for="name">Name:</label>
+        <input class="form-control" id="name" type="text" [(ngModel)]="registerForm.name"><br>
+
+        <label for="email">E-mail:</label>
+        <input class="form-control" id="email" type="text" [(ngModel)]="registerForm.email"><br>
+        <button class="btn btn-success" (click)='register()'>Register</button>
+    </div>
+    <br>{{errorMessage}}<br>
+    <a [routerLink]="['/login']">Back to login form</a>
+</div>

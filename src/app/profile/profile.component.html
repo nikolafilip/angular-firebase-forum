@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6">
+            Posts by {{currentUser.name}} ({{numberOfPosts}})<br><br>
+
+            <div *ngFor="let post of postsService.posts ; let i = index">
+                <div *ngIf="checkIfPostByCurrentUser(post)" class="jumbotron">
+                    <span>by {{currentUser.name}} at {{post.timestamp}}</span>
+                    <hr> {{post.comment}}
+                </div>
+            </div>
+            <a [routerLink]='["/"]'>Back</a>
+
+        </div>
+
+        <div class="col-lg-4">
+            <div style="margin-top: 20px">
+                User data:<br> Username: {{currentUser.username}}<br> E-mail: {{currentUser.email}}<br> Name: {{currentUser.name}}
+            </div>
+        </div>
+    </div>
+</div>

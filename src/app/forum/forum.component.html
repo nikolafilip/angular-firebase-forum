@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <p>Welcome <a [routerLink]="['profile']">{{currentUser.name}}</a> ({{currentUser.email}})<br /></p>
+    <button (click)='logout()' class='btn btn-danger'>Log out</button><br><br>
+    <h3>Posts ({{postsService.posts.length}}):</h3>
+
+    <div class="jumbotron" *ngFor="let post of postsService.posts ; let i = index" style="width:50%">
+
+        <p>by {{loginService.users[post.userId].username}} at {{post.timestamp}}</p>
+        <hr> <span *ngIf="editingIndex!=i">{{post.comment}}</span>
+        <span *ngIf="editingIndex==i"><textarea class="form-control rounded-0" id="comment" rows="5" [(ngModel)]='editingPost.comment'></textarea></span>
+        <hr>
+        <span *ngIf="editingIndex!=i"><button class="btn btn-danger" (click)='postsService.deletePost(i)' [disabled]="checkOwner(post)">Delete</button>&nbsp;<button class="btn btn-warning" (click)="setEdit(i)" [disabled]="checkOwner(post)">Edit</button></span>
+        <span *ngIf="editingIndex==i"><button class="btn btn-success" (click)='doneEditing(i)'>Save</button></span>
+    </div>
+
+    <br><button *ngIf="!postComment" class="btn btn-success" (click)="postComment = !postComment">New comment</button>
+
+    <div *ngIf="postComment" style="width:25%">
+        <button class="btn btn-danger" (click)="postComment = !postComment">Cancel</button><br>
+        <fieldset class="form-group">
+            <label for="user">User:</label>
+            <input id="user" type="text" disabled="true" placeholder="{{currentUser.username}}" class="form-control">
+            <label for="comment">Comment:</label>
+            <textarea class="form-control rounded-0" id="comment" rows="10" [(ngModel)]='newComment'></textarea>
+            <button class="btn btn-success" (click)='addPost()'>Send</button>
+        </fieldset>
+    </div>
+</div>
